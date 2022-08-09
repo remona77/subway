@@ -1,0 +1,880 @@
+@charset "utf-8";
+*{margin: 0; padding: 0;}
+ul{list-style: none;}
+a{text-decoration: none; color: #666;}
+body{font-size: 16px; color: #666; line-height: 120%;
+font-family: "font_ns", sans-serif;}
+
+.header{
+    /* 전체를 다 감싸니까 가로 백프로 */
+    width: 100%;
+    height: 164px;
+    /* background-color: #eee; */
+    border-top: 5px solid #009223;
+    border-bottom: 1px solid #ddd;
+}
+
+.header .header-wrap{
+    width: 1170px;
+    height: 100%;
+    margin: 0 auto;
+    position: relative;
+    /* 기준점이 1170기준에서 지구가 오른쪽이기때문에 포지션 렐러티브로 기준점 잡음
+    만약 맨 끝에 갔다면 포지션이 앱솔루트일거임? */
+}
+
+.header .logo{
+    /* 로고가 이미지에 감싸져있음. 디스플레인 인라인만 텍스트 센터에 영역을 받음. 
+    이미지만 가운데 쏙 넣고싶으면 텍스트 어라인 센터 하면 됨 */
+    text-align: center;
+    margin-top: 35px;
+
+}
+
+.header .etc-menu{
+position: absolute;
+ /* 지구 오른족으로 보내기위해서 위에서 포지션 렐러티브 잡았으니 여기선 앱솔루트 */
+right: 25px;
+top: 5px;
+}
+
+.header .etc-menu ul{overflow: hidden;}
+.header .etc-menu ul li{float: left; position: relative;}
+.header .etc-menu ul li a{display: inline-block; height: 30px; line-height: 30px; font-size: 13px; font-weight: normal;}
+.header .etc-menu ul li:nth-child(2){margin-left: 30px;}
+/* 회원가입을 오른쪽으로 밀어버릴거임 공간이 있으니까  */
+.header .etc-menu ul li:nth-child(2)::after{
+    /* 중간에 작은 점 만들기위해 네모 만들기 */
+    content: "";
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background-color: #ddd;
+    top: 50%;
+    left: -16px;
+    margin-top: -2px;
+}
+/* 언어라는 글자 삭제할거임 */
+.header .etc-menu ul li:nth-child(3) a{
+    font-size: 0;
+    width: 30px;
+    height: 30px;
+    background-image: url("../images/icon_utill_global.png");
+    margin-left: 15px;
+    vertical-align: middle;
+    /* 수직정렬이고, 이거는 디스플레인 인라인에서만 적용됨  */
+}
+
+.header .nav{
+    width: 100%;
+    /* 마진용 오토가 걸린 백퍼센트다 */
+    margin-top: 12px;
+
+}
+.header .nav ul{
+    width: 990px;
+    margin: 0 auto;
+    /* background-color: #999; */
+    overflow: hidden;
+}
+
+.header .nav ul li{
+    float: left;
+    /* 플로레프트 넣으면 부모요소에 오버플로우 히든 넣어야함 */
+    width: 165px;
+    height: 77px;
+    /* 77픽셀 기준으로 가운데로 와야함 */
+    line-height: 77px;
+    text-align: center;
+
+}
+.header .nav ul li a{
+    display: inline-block;
+    width: 100%;
+    font-weight: bold;
+    color: #292929;
+    letter-spacing: -0.03em;
+    font-size: 18px;
+    /* 글 자간 */
+}
+
+.header .nav ul li.on a{color: #009223;}
+/* 자바스크립트 온 썼음  글자에 색 들어오게하려고*/
+
+.header .submenu{
+    width: 100%;
+    position: relative;
+    top: -34px;
+    background-color: #fff;
+    /* 화면에서 메뉴 숨기는건 디스플레이메뉴하면 안됨
+    메뉴가 자연스럽게 내려오는데 그럼 트렌디션 써야하는데 디스플레이메뉴에서는 이거 안먹힘 이거는 무조건 세로는 0 오버플로우 히든쓰면 됨 */
+    transition: 0.2s;
+    height: 0;
+    overflow: hidden;
+    z-index: 9;
+    /* 제트인덱스를 넣어야 서브메뉴가 나옴  */
+}
+
+.header .submenu.on{
+    height: 260px;
+}
+.header .submenu .submenu-wrap{
+    width: 990px;
+    margin: 0 auto;
+}
+
+/* 서브 덩어리가 왼쪽으로 정렬됨
+그럼 ul자체가 왼쪽으로 정렬돼야 함 */
+
+.header .submenu ul{
+    float: left;
+    width: 165px;
+    text-align: center;
+    padding-top: 20px;
+    /* 패딩준걸 마우스 대든 때든 유지가 되야하므로 패딩탑을 줌 */
+}
+
+.header .submenu ul li{
+    width: 100%;
+    height: 35px;
+    line-height: 120%;
+    transition: 0.2s;
+    opacity: 0;
+    /* 마우스 대면 내려올때 잘보면 오퍼시티 효과가 있음. 글자가 사라짐 */
+}
+
+.header .submenu ul li a{
+    padding: 8px 0 9px;
+    display: inline-block;
+    width: 100%;
+    letter-spacing: -0.05em;
+    font-size: 15px;
+}
+.header .submenu ul li a:hover{
+    color: #009223;
+    text-decoration: underline;
+}
+
+.header .submenu ul li.on{opacity: 1;}
+
+
+.slide-section{
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+/* 꺽쇠를 쓰는이유는 ul이 두개니까 바로 밑에 자식인 첫번째 유엘을 선택하기위해 씀 */
+
+.slide-section > ul li{
+    float: left;
+    width: calc(100% / 8);
+    position: relative;
+    height: 440px;
+    font-size: 0;
+    /* 컨트롤+f5누르면 이미지가 정상적으로 슬라이드됨 */
+}
+.slide-section > ul li img{width: 100%; height: 440px;}
+
+.slide-section .indicator{
+    position: absolute;
+    right: 365px;
+    bottom: 50px;
+}
+
+.slide-section .indicator ul li{
+    float: left;
+    margin: 0 5px;
+}
+
+.slide-section .indicator ul li a{
+    display: block;
+    width: 10px;
+    height: 10px;
+    background-color: #fff;
+    border-radius: 30px;
+    font-size: 0;
+    /* 글자 1 지우기위해  */
+    transition: 0.5s;
+    /* 버튼 누르면 노란색길게 생기게 하기위해 트렌디션 줌 */
+
+}
+
+.slide-section .indicator ul li a.on{
+    width: 30px;
+    background-color: #ffc300
+    /* 이거 다하고 헤드 서브메뉴에 들어가서 제트인덱스9를 넣어줘야 서브메뉴가 나옴 */
+}
+
+.quick-menu{
+    width: 1170px;
+    margin: 0 auto;
+    margin-top: -30px;
+    position: relative;
+    z-index: 9;
+}
+
+.quick-menu ul{
+    float: right;
+}
+
+.quick-menu ul li{
+    float: left;
+    width: 300px;
+    height: 80px;
+    text-align: center;
+}
+
+/* 둘에 배경색을 넣어줘야 함  */
+.quick-menu ul li:nth-child(1){
+    background-color: #ffce32;
+    border-radius: 30px 0 0 0;
+    letter-spacing: -0.02em;
+}
+
+.quick-menu ul li:nth-child(2){
+    background-color: #009223;
+    border-radius: 0 0 30px 0;
+    letter-spacing: -0.06em;
+    /* 퀵메뉴에 가서 마진탑 -30준다. 덜 보이게 해야하니까  */
+    /* 포지션 렐러티브와 제트인덱스를 퀵메뉴에다 설정 */
+}
+
+.quick-menu ul li a{
+    font-size: 22px;
+    padding-top: 27px;
+    display: inline-block;
+    /* 패딩탑이 안먹는이유는 디스플레이 인라인블락으로 바꿔줘야하기떄문 */
+    width: 100%;
+    font-weight: bold;
+}
+
+.quick-menu ul li:nth-child(1) a{color: #292929;}
+
+.quick-menu ul li:nth-child(1) a::before{
+    content: "";
+    width: 24px;
+    height: 30px;
+    background-image: url("../images/icon_map.png");
+    /* 디스플레이 인라인블락해야 이미지나옴 */
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 13px;
+    position: relative;
+    top: -2px;
+}
+
+
+.quick-menu ul li:nth-child(2) a{color: #fff;}
+
+.quick-menu ul li:nth-child(2) a::before{
+    content: "";
+    width: 34px;
+    height: 30px;
+    background-image: url("../images/icon_franchise.png");
+    /* 디스플레이 인라인블락해야 이미지나옴 */
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 13px;
+    position: relative;
+    top: -2px;
+}
+
+/* 노랑 초록을 마진탑 -30줬기때문에 글자가 위로올라가서 가려져보인다.
+그래서 마진을 다시 줄거임 */
+.subway-menu{
+    margin-top: 80px;
+    background-color: #fff;
+    width: 100%;
+    height: 560px;
+    padding-bottom: 60px;
+}
+
+.subway-menu .menu-list{
+    width: 1170px;
+    margin: 0 auto;
+    overflow: hidden;
+    /* 서브웨이와 리스트가 플롯이들어갈거라서 오버플로우 히든줬음 */
+    padding-top: 60px;
+    padding-bottom: 33px;
+}
+
+.subway-menu .menu-list h3{
+    float: left;
+    color: #292929;
+    font-size: 40px;
+    font-family: "font_sw",serif;
+    height: 60px;
+    padding-top: 32px;
+    padding-left: 25px;
+    margin-bottom: 1px;
+    background: url("../images/bul_tit.png") 0 12px no-repeat;
+
+}
+
+.subway-menu .menu-list ul{
+    float: right;
+    margin-right: 44px;
+    margin-top: 44px;
+    /* 글자를 떨어뜨리기위해서 마진탑44줬음 */
+}
+
+.subway-menu .menu-list ul li{
+    float: left;
+    padding-left: 25px;
+    margin-left: 24px;
+    font-weight: 300;
+    position: relative;
+    /* 사이에 줄을 간격을 넣기위해 기준점 잡아야함 포지션 렐러티브 설정 */
+}
+
+
+/* 첫번쨰를 제외한 나머지 선넣기 */
+.subway-menu .menu-list ul li:not(:nth-child(1))::after{
+    content: "";
+    position: absolute;
+    width: 1px;
+    height: 15px;
+    background-color: #ddd;
+    left: 0;
+    top: 3px;
+}
+
+.subway-menu .menu-list ul li a{
+    display: inline-block;
+    width: 100%;
+    font-size: 16px;
+    letter-spacing: -0.03em;
+}
+
+.subway-menu .menu-list ul li.on a{
+    color: #009223;
+    font-weight: bold;
+}
+
+.subway-menu .menu-content{
+    position: absolute;
+    width: 100%;
+    height: 320px;
+    overflow: hidden;
+}
+
+.subway-menu .menu-content .menu-content-wrap{
+    position: absolute;
+    width: 1200px;
+    height: 100%;
+    /* 엡솔루트에서는 마진오토가 안먹힌다 그래서 아래와 같이 설정함 */
+    left: 50%;
+    transform: translateX(-50%);
+    display: none;
+    /* 리스트드들이 겹쳐져서 보여지므로 우선 디스플레이 논을 한다.
+    내가 선택한 애들만 보이게 하기 위해서  */
+}
+
+.subway-menu .menu-content .menu-content-wrap:nth-child(1){
+    display: block;
+}
+.subway-menu .menu-content .menu-wrap{
+    width: 100%;
+    height: 100%;
+    margin-top: -15px;
+    overflow: hidden;
+}
+.subway-menu .menu-content .menu-area{
+    width: 200%;
+    position: relative;
+
+}
+.subway-menu .menu-content .menu-box{
+    float: left;
+    width: 260px;
+    height: 320px;
+    margin-left: 30px;
+    padding: 0 5px;
+    cursor: pointer;
+    text-align: center;
+    position: relative;
+    /* 돋보기 설정위해 포지션 렐러티브 */
+}
+.subway-menu .menu-content .menu-box::after{
+    content:"";
+    width: 98px;
+    height: 98px;
+    position: absolute;
+    background: url("../images/btn_more.png") 0 0 no-repeat;
+    left: 50%;
+    top: 50%;
+    margin: -22px 0 0 -42px;
+    opacity: 0;
+}
+
+.subway-menu .menu-content .menu-box:hover::after{
+    opacity: 1;
+}
+
+.subway-menu .menu-content .menu-box img{
+    width: 100%;
+    height: 182px;
+}
+
+/* 커서대면 확대기능 */
+.subway-menu .menu-content .menu-box:hover img{
+    width: 340px;
+    height: 238px;
+}
+
+/* 마우스대면 햄버거 밑에 글자 날라가는거 */
+.subway-menu .menu-content .menu-box:hover p{
+    display: none;
+}
+
+/* 마우스 올렸을때 h태그도 글자 커짐 */
+.subway-menu .menu-content .menu-box:hover h3{
+    font-size: 22px;
+    margin-top: 10px;
+}
+
+.subway-menu .menu-content .menu-box h3{
+    color: #292929;
+    font-size: 18px;
+    margin-top: 3px;
+    margin-bottom: 10px;
+}
+
+.subway-menu .menu-content .menu-box p{
+    color: #999;
+    font-size: 13px;
+    letter-spacing: -0.04em;
+    line-height: 21px;
+}
+
+.subway-menu .menu-content .arrow a{
+    font-size: 0;
+    /* 글자 안보이게 할거임 */
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    /* 오십보다 큰거는 숨길거임 */
+    top: 113px;
+    background: url("../images/icon_event_slider_arr.png") 0 0 no-repeat;
+}
+
+.subway-menu .menu-content .arrow a:nth-child(1){left: -202px;}
+.subway-menu .menu-content .arrow a:nth-child(1):hover{background-position-y: 100%;}
+
+.subway-menu .menu-content .arrow a:nth-child(2){right: -201px; background-position: 100% 0;}
+.subway-menu .menu-content .arrow a:nth-child(2):hover{background-position-y: 100%;}
+
+
+.content{
+    width: 100%;
+    background: url("../images/bg_content.gif") 0 -30px;
+}
+
+.content .content-wrap{
+    width: 1280px;
+    margin: 0 auto;
+    padding: 80px 0;
+    overflow: hidden;
+}
+
+.content .content-top{width: 100%; height: 300px;}
+.content .content-top .content-amused{float: left; width: 400px; height: 300px; margin-left: 55px; background-image: url("../images/bg_utilization.png");}
+
+.content .content-top .content-amused h3{
+    color: #fff;
+    margin-left: 39px;
+    font-size: 28px;
+    line-height: 40px;
+    letter-spacing: -0.02em;
+}
+
+.content .content-top .content-amused h3:nth-child(1){
+    margin: 38px 0 0 39px;
+    letter-spacing: -0.03em;
+}
+
+.content .content-top .content-amused a{
+    display: inline-block;
+    margin: 100px 0 0 41px;
+    width: 92px;
+    height: 36px;
+    line-height: 36px;
+    border: 2px solid #fff;
+    color: #fff;
+    font-weight: 300;
+    text-align: center;
+    border-radius: 20px;
+}
+
+.content .content-top .content-history{float: left; width: 825px; height: 300px; background-image: url("../images/img_subway_history.png");}
+
+.content .content-top .content-history h3{
+    color: #fff;
+    margin-left: 410px;
+    font-size: 28px;
+    line-height: 40px;
+    letter-spacing: -0.02em;
+}
+
+.content .content-top .content-history h3:nth-child(1){
+    margin-top: 38px;
+} 
+
+.content .content-top .content-history a{
+    display: inline-block;
+    margin: 100px 0 0 410px;
+    width: 128px;
+    height: 36px;
+    line-height: 36px; 
+    border: 2px solid #fff;
+    color: #fff;
+    font-weight: 300;
+    text-align: center;
+    border-radius: 20px;
+}
+
+.content .content-bottom{width: 100%; height: 300px; margin: 30px 0 0 55px;}
+.content .content-bottom .content-notice{width: 870px; height: 300px; background-color: #fff; float: left; border-radius: 30px 0 30px 0;}
+
+.content .content-bottom .content-notice .title{
+    float: left;
+    margin: 75px 0 0 60px;
+}
+
+.content .content-bottom .content-notice .title h3{
+    color: #292929;
+    font-size: 30px;
+    font-family: "font_sw",serif;
+    height: 60px;
+    padding-top: 26px;
+    padding-left: 25px;
+    margin-bottom: 1px;
+    background: url("../images/bul_tit.png") 0 0px no-repeat;
+}
+
+.content .content-bottom .content-notice .title p{
+    margin-top: -9px;
+    text-align: center;
+    line-height: 26px;
+    letter-spacing: -0.03em;
+}
+
+.content .content-bottom .content-notice .title p:nth-child(3){
+    line-height: 44px;
+}
+
+.content .content-bottom .content-notice .text{
+    float: left;
+    width: 50%;
+    margin: 76px 0 0 133.5px;
+}
+
+.content .content-bottom .content-notice .text ul li:not(:nth-child(1)){
+    margin-top: 21px;
+}
+
+.content .content-bottom .content-notice .text ul li a{
+    color: #292929;
+    font-size: 16px;
+    letter-spacing: -0.03em;
+    display: inline-block;
+    position: relative;
+}
+.content .content-bottom .content-notice .text ul li a::after{
+    content: "";
+    width: 0%;
+    height: 1px;
+    background-color: #009223;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    transition: 0.2s;   
+}
+.content .content-bottom .content-notice .text ul li a:hover{
+    color: #009223;
+}
+
+.content .content-bottom .content-notice .text ul li a:hover::after{
+    width: 100%;
+}
+
+/* li 밑에있는 a에 영향을 안주기위해 꺾쇠넣음 */
+.content .content-bottom .content-notice .text > a{
+    display: inline-block;
+    color: #999;
+    font-size: 14px;
+    margin: 32px 0 7px;
+}
+
+.content .content-bottom .content-slide{width: 270px; height: 300px; background-color: #fff; margin-left: 30px; float: left; border-radius: 0 30px 0 30px; position: relative; overflow: hidden;}
+/* 점에 배너를 연결하기위해서 기준점을 잡아야 함포지션 렐러티브를 설정 */
+
+    
+/* 유미세포2에있는 ul을 선택하기위해 꺾쇠넣음. ul이 두개니까! */
+.content .content-bottom .content-slide > ul{
+    width: 300%;
+}
+.content .content-bottom .content-slide > ul li{float: left;}
+
+.content .content-bottom .content-slide .indicator{
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+.content .content-bottom .content-slide .indicator ul li{
+    font-size: 0;
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    background-color: #fff;
+    border-radius: 30px;
+    margin: 0 5px;
+    transition: 0.3s;
+    /* 노란색을 자연스럽게 길게하기위해 트렌지션 설정 */
+}
+.content .content-bottom .content-slide .indicator ul li.on{
+    width: 30px;
+    background-color: #ffc300;
+}
+
+/* li.on = {li class=on}이다 */
+/* li .on은 li밑에 on이라는 클래스를 가진 div자식이 생기는건다 */
+
+.footer-menu{
+    text-align: center;
+    width: 100%;
+    padding: 40px 0;
+}
+
+.footer-menu .menu-wrap{
+    width: 1035.97px;
+    margin: 0 auto;
+    height: 70px;
+}
+
+.footer-menu ul{overflow: hidden; height: 100%;}
+.footer-menu ul li{
+    float: left;
+    margin-left: 80px;
+    padding-left: 90px;
+    height: 100%;
+    position: relative;
+    /* 아이콘을 앱솔루트 줄거라서 여기에 기준점 잡아야함 */
+}
+
+.footer-menu ul li:nth-child(1){
+    margin-left: 0;
+    width: 125.23px;
+}
+
+.footer-menu ul li:nth-child(2){
+    width: 113.53px;
+}
+
+.footer-menu ul li:nth-child(3){
+    width: 78.09px;
+}
+
+.footer-menu ul li:nth-child(4){
+    width: 119.11px;
+}
+
+.footer-menu ul li .icon{
+    background: url("../images/icon_quickmenu.png") 0 0 no-repeat;
+    width: 70px;
+    height: 70px;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+/* 아이콘은 하나니까 nth차일드가 없다. 그래서 그 부모를 잡아야 한다 
+li번호의 아이콘으로 넘어가야한다 */
+.footer-menu ul li:nth-child(2) .icon{
+    background-position-x: -70px;
+}
+
+.footer-menu ul li:nth-child(3) .icon{
+    background-position-x: -140px;
+}
+
+.footer-menu ul li:nth-child(4) .icon{
+    background-position-x: -210px;
+}
+
+.footer-menu ul li p{
+    font-weight: bold;
+    color: #292929;
+    font-size: 18px;
+    text-align: left;
+    letter-spacing: -0.72px;
+    margin-bottom: 6px;
+    margin-top: 12px;
+}
+
+.footer-menu ul li span{
+    color: #999;
+    font-size: 13px;
+    text-align: left;
+    display: block;
+    font-weight: normal;
+    letter-spacing: -0.26px;
+}
+
+.footer{
+    background-color: #292929;
+    padding: 22px 0;
+    color: #666;
+    position: relative;
+    /* 하얀 선 설정하기위해 포지션 렐러티브 설정 그리고 밑에 에프터 해야함 */
+}
+
+.footer::after{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background-color: #3b3b3b;
+    top: 59px;
+}
+
+/* 인스타그램을 또 넣으려면 또 기준을 잡아야함 그래서 아래와같이 포지션 렐러티브 설정 */
+.footer .footer-wrap{
+    width: 1170px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.footer .footer-top{
+    margin-bottom: 25px;
+}
+
+.footer .footer-top ul{overflow: hidden;}
+.footer .footer-top ul li{
+    float: left;
+    margin-right: 29px;
+    height: 18px;
+    top: -2px;
+    position: relative;
+}
+
+
+.footer .footer-top ul li a{
+    color: #666;
+    display: block;
+    font-size: 14px;
+    letter-spacing: -0.05em;
+    height: 18px;
+}
+
+
+/* 과제 1 */
+.footer .footer-top ul li:nth-child(2) a{
+    font-weight: bold;
+    color: #bbbbbb;
+}
+
+/* 과제3 */
+.footer .footer-top ul li:nth-child(5) a{
+    letter-spacing: 0.06em;
+}
+
+
+.footer .footer-bottom span{
+    font-size: 13px;
+    display: inline-block;
+    margin-top: 19px;
+    margin-left: 3px;
+    padding-left: 9px;
+    letter-spacing: 0;
+    position: relative;
+    /* 중간에 선을 넣기위해 포지션 렐러티브 설정함 */
+}
+
+
+/* 과제2 */
+.footer .footer-bottom span:not(:nth-child(1))::after{
+    content: "";
+    position: absolute;
+    width: 2px;
+    height: 10px;
+    background-color: #666;
+    left: 0;
+    top: 5px;
+}
+
+
+
+.footer .footer-bottom span:nth-child(1){
+    margin-left: 0;
+    padding-left: 0;
+}
+
+
+.footer .footer-bottom p{
+    font-size: 13px;
+    padding-top: 2px;
+    line-height: 25px;
+    letter-spacing:0.005em;
+    font-family:"font_sw", serif;
+}
+
+
+
+
+.footer .sns-link{
+    position: absolute;
+    right: -10px;
+    top: 53px;
+    width: 165px;
+    height: 50px;
+}
+.footer .sns-link ul li{
+    position:absolute;
+    font-size: 0;
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    line-height: 0;
+    bottom: 0;
+}
+
+.footer .sns-link ul li::after{
+    content: "";
+    width: 50px;
+    height: 50px;
+    display: block;
+    transition: 0.3s;
+    opacity: 0;
+}
+
+.footer .sns-link ul li:nth-child(1){
+    background: url("../images/icon_sns_instar.png");
+}
+
+.footer .sns-link ul li:nth-child(1)::after{
+    background: url("../images/icon_sns_instar.png") 100% 0;
+}
+
+.footer .sns-link ul li:nth-child(1):hover::after{
+    opacity: 1;
+}
+
+.footer .sns-link ul li:nth-child(2){
+    background: url("../images/icon_sns_facebook.png");
+    left: 65px;
+
+}
+
+.footer .sns-link ul li:nth-child(2)::after{
+    background: url("../images/icon_sns_facebook.png") 100% 0;
+}
+
+.footer .sns-link ul li:nth-child(2):hover::after{
+    opacity: 1;
+}
+
+
+
